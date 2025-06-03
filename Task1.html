@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form to Table</title>
+  <script>
+    function addDataToTable(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const studentId = document.getElementById('studentId').value;
+      const courseId = document.getElementById('courseId').value;
+
+      if (name === "" || studentId === "" || courseId === "")
+        return alert("Please fill out all fields");
+
+      const table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+      const newRow = table.insertRow();
+
+      const nameCell = newRow.insertCell(0);
+      const studentIdCell = newRow.insertCell(1);
+      const courseIdCell = newRow.insertCell(2);
+
+      nameCell.textContent = name;
+      studentIdCell.textContent = studentId;
+      courseIdCell.textContent = courseId;
+
+      document.getElementById('userForm').reset();
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+  <div class="max-w-xl mx-auto bg-white p-6 rounded shadow">
+    <h1 class="text-2xl font-bold mb-4 text-center">Student Form</h1>
+
+    <!-- Updated Form -->
+    <form id="userForm" onsubmit="addDataToTable(event)" class="space-y-4">
+      <div>
+        <label class="block text-gray-700">Name:</label>
+        <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded" required>
+      </div>
+      <div>
+        <label class="block text-gray-700">Student ID:</label>
+        <input type="text" id="studentId" class="w-full p-2 border border-gray-300 rounded" required>
+      </div>
+      <div>
+        <label class="block text-gray-700">Course ID:</label>
+        <input type="text" id="courseId" class="w-full p-2 border border-gray-300 rounded" required>
+      </div>
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Submit</button>
+    </form>
+  </div>
+
+  <!-- Updated Table -->
+  <div class="max-w-2xl mx-auto mt-8">
+    <h2 class="text-xl font-semibold mb-2">Submitted Data</h2>
+    <table class="min-w-full bg-white border border-gray-300" id="dataTable">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="py-2 px-4 border-b">Name</th>
+          <th class="py-2 px-4 border-b">Student ID</th>
+          <th class="py-2 px-4 border-b">Course ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- JavaScript will insert new rows here -->
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
